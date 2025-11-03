@@ -1,6 +1,7 @@
 import { Document } from 'mongoose';
 
-export class TaskModel extends Document {
+export class TaskDTO extends Document {
+  codigo?: number;
   description: string;
   completed: boolean;
 }

@@ -1,13 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { TaskModel } from './dto/task';
+
 import { TaskService } from './shared/tasks.service';
+import { TaskDTO } from './dto/task';
 
 @Controller('tasks')
 export class TaskController {
   constructor(private readonly taskService: TaskService) { }
 
   @Post()
-  async create(@Body() task: TaskModel) {
+  async create(@Body() task: TaskDTO) {
     return await this.taskService.create(task);
   }
 
@@ -18,12 +19,12 @@ export class TaskController {
 
 
   @Get(':id')
-  async getByID(@Param('id') id: string): Promise<TaskModel> {
+  async getByID(@Param('id') id: string): Promise<TaskDTO> {
     return await this.taskService.getById(id);
   }
 
   @Put(':id')
-  async updateOne(@Param('id') id: string, @Body() task: TaskModel): Promise<TaskModel> {
+  async updateOne(@Param('id') id: string, @Body() task: TaskDTO): Promise<TaskDTO> {
     return await this.taskService.update(id, task);
   }
 
